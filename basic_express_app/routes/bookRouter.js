@@ -1,9 +1,0 @@
-const { Router } = require("express");
-
-const bookRouter = Router();
-
-bookRouter.get("/:books", (req, res) => {
-  res.send("All books");
-});
-
-module.exports = bookRouter;

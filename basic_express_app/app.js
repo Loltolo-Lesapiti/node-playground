@@ -1,16 +1,18 @@
 const express = require("express");
+
 const app = express();
+//Middlewares
+const { logger } = require("./logger");
+const authorize = require("./authorize");
+app.use([logger, authorize]);
 
-const index = require("./routes/indexRouter");
-const authors = require("./routes/authorRouter");
-const books = require("./routes/bookRouter");
+app.get("/", (req, res) => {
+  res.send("Home page");
+});
+app.get("/about", (req, res) => {
+  res.send("About page");
+});
 
-const PORT = process.env.PORT || 3000;
-
-app.get("/authors", authors);
-app.get("/books", books);
-app.get("/", index);
-
-app.listen(PORT, () => {
-  console.log(`Listening to port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Listening to port 5000");
 });
